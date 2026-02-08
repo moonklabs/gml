@@ -1,6 +1,13 @@
+import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
+      <Header />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-50 to-white py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -11,18 +18,16 @@ export default function HomePage() {
             전문가 멘토링을 받고 결제한 모든 금액이 한국의 미자립/개척교회를 지원하는 기부금으로 전환됩니다.
           </p>
           <div className="flex gap-4 justify-center">
-            <a
-              href="/mentors"
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-            >
-              멘토 찾기
-            </a>
-            <a
-              href="/auth/signup"
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition"
-            >
-              멘토 되기
-            </a>
+            <Link href="/mentors">
+              <Button size="lg" className="text-base">
+                멘토 찾기
+              </Button>
+            </Link>
+            <Link href="/auth/signup">
+              <Button size="lg" variant="outline" className="text-base">
+                멘토 되기
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -84,17 +89,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-50 py-12 px-4">
-        <div className="max-w-6xl mx-auto text-center text-gray-600">
-          <p className="mb-2">
-            Global Mission Light는 501(c)(3) 비영리 단체입니다.
-          </p>
-          <p className="text-sm">
-            © {new Date().getFullYear()} Global Mission Light. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

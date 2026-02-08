@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { createClient } from '@/lib/supabase/client'
+// import { createClient } from '@/lib/supabase/client'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -21,37 +21,47 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
 
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
+    // Mock mode: 1초 딜레이 후 대시보드로 이동
+    // TODO: Supabase 복구 시 아래 주석 해제
+    // const supabase = createClient()
+    // const { error } = await supabase.auth.signInWithPassword({
+    //   email,
+    //   password,
+    // })
+    // if (error) {
+    //   setError(error.message)
+    //   setLoading(false)
+    // } else {
+    //   router.push('/dashboard/profile')
+    //   router.refresh()
+    // }
 
-    if (error) {
-      setError(error.message)
-      setLoading(false)
-    } else {
+    setTimeout(() => {
       router.push('/dashboard/profile')
-      router.refresh()
-    }
+    }, 1000)
   }
 
   const handleGoogleLogin = async () => {
     setLoading(true)
     setError('')
 
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${location.origin}/auth/callback`,
-      },
-    })
+    // Mock mode: 1초 딜레이 후 대시보드로 이동
+    // TODO: Supabase 복구 시 아래 주석 해제
+    // const supabase = createClient()
+    // const { error } = await supabase.auth.signInWithOAuth({
+    //   provider: 'google',
+    //   options: {
+    //     redirectTo: `${location.origin}/auth/callback`,
+    //   },
+    // })
+    // if (error) {
+    //   setError(error.message)
+    //   setLoading(false)
+    // }
 
-    if (error) {
-      setError(error.message)
-      setLoading(false)
-    }
+    setTimeout(() => {
+      router.push('/dashboard/profile')
+    }, 1000)
   }
 
   return (

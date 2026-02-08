@@ -1,34 +1,38 @@
-import { createClient } from '@/lib/supabase/server'
+// import { createClient } from '@/lib/supabase/server'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { getMentorById } from '@/lib/mock-data'
 
 export default async function MentorDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const supabase = await createClient()
+  // const supabase = await createClient()
   const { id } = await params
 
-  // 멘토 프로필 조회
-  const { data: mentor } = await supabase
-    .from('mentor_profiles')
-    .select(`
-      *,
-      profiles:user_id (
-        full_name,
-        avatar_url
-      ),
-      mentor_specialties (
-        specialties (
-          name_ko,
-          slug
-        )
-      )
-    `)
-    .eq('id', id)
-    .eq('is_active', true)
-    .eq('is_approved', true)
-    .single()
+  // 목 데이터에서 멘토 프로필 조회
+  // TODO: Supabase 복구 시 아래 주석 해제
+  // const { data: mentor } = await supabase
+  //   .from('mentor_profiles')
+  //   .select(`
+  //     *,
+  //     profiles:user_id (
+  //       full_name,
+  //       avatar_url
+  //     ),
+  //     mentor_specialties (
+  //       specialties (
+  //         name_ko,
+  //         slug
+  //       )
+  //     )
+  //   `)
+  //   .eq('id', id)
+  //   .eq('is_active', true)
+  //   .eq('is_approved', true)
+  //   .single()
+
+  const mentor = getMentorById(id)
 
   if (!mentor) {
     notFound()

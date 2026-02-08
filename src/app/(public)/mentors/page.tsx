@@ -34,7 +34,7 @@ export default function MentorsPage() {
             <p className="text-gray-500 text-lg">
               검색 결과가 없습니다.
             </p>
-            <Link href="/auth/signup" className="inline-block mt-4">
+            <Link href="/signup" className="inline-block mt-4">
               <Button>첫 번째 멘토가 되어보세요</Button>
             </Link>
           </div>

@@ -11,7 +11,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <aside className="hidden md:block w-64 bg-gray-50 border-r border-gray-200">
           <nav className="p-6 space-y-2">
             <Link
-              href="/dashboard/profile"
+              href="/profile"
               className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors"
             >
               📝 프로필 관리

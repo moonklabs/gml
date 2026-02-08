@@ -38,12 +38,12 @@ export default function SignupPage() {
     //   setError(error.message)
     //   setLoading(false)
     // } else {
-    //   router.push('/dashboard/profile')
+    //   router.push('/profile')
     //   router.refresh()
     // }
 
     setTimeout(() => {
-      router.push('/dashboard/profile')
+      router.push('/profile')
     }, 1000)
   }
 
@@ -66,7 +66,7 @@ export default function SignupPage() {
     // }
 
     setTimeout(() => {
-      router.push('/dashboard/profile')
+      router.push('/profile')
     }, 1000)
   }
 
@@ -164,7 +164,7 @@ export default function SignupPage() {
       <CardFooter className="flex justify-center">
         <p className="text-sm text-gray-600">
           이미 계정이 있으신가요?{' '}
-          <Link href="/auth/login" className="text-blue-600 hover:underline">
+          <Link href="/login" className="text-blue-600 hover:underline">
             로그인
           </Link>
         </p>

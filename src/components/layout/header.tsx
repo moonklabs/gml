@@ -20,10 +20,10 @@ export function Header() {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <Link href="/auth/login">
+            <Link href="/login">
               <Button variant="ghost">로그인</Button>
             </Link>
-            <Link href="/auth/signup">
+            <Link href="/signup">
               <Button>멘토 되기</Button>
             </Link>
           </div>

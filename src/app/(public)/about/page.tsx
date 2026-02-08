@@ -125,7 +125,7 @@ export default function AboutPage() {
             <Link href="/mentors">
               <Button size="lg">멘토 찾기</Button>
             </Link>
-            <Link href="/auth/signup">
+            <Link href="/signup">
               <Button size="lg" variant="outline">
                 멘토 되기
               </Button>

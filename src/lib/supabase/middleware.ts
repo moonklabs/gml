@@ -33,11 +33,11 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // 보호된 라우트 체크 (예: /dashboard/*)
-  if (request.nextUrl.pathname.startsWith('/dashboard') && !user) {
+  // 보호된 라우트 체크 (예: /profile)
+  if (request.nextUrl.pathname.startsWith('/profile') && !user) {
     // 인증되지 않은 사용자는 로그인 페이지로 리다이렉트
     const url = request.nextUrl.clone()
-    url.pathname = '/auth/login'
+    url.pathname = '/login'
     return NextResponse.redirect(url)
   }
 

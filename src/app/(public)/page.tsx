@@ -25,7 +25,7 @@ export default function HomePage() {
                 멘토 찾기
               </Button>
             </Link>
-            <Link href="/auth/signup">
+            <Link href="/signup">
               <Button size="lg" variant="outline" className="text-base">
                 멘토 되기
               </Button>

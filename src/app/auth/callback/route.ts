@@ -14,5 +14,5 @@ export async function GET(request: Request) {
   // }
 
   // OAuth 로그인 후 대시보드로 리다이렉트
-  return NextResponse.redirect(`${origin}/dashboard/profile`)
+  return NextResponse.redirect(`${origin}/profile`)
 }

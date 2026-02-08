@@ -32,12 +32,12 @@ export default function LoginPage() {
     //   setError(error.message)
     //   setLoading(false)
     // } else {
-    //   router.push('/dashboard/profile')
+    //   router.push('/profile')
     //   router.refresh()
     // }
 
     setTimeout(() => {
-      router.push('/dashboard/profile')
+      router.push('/profile')
     }, 1000)
   }
 
@@ -60,7 +60,7 @@ export default function LoginPage() {
     // }
 
     setTimeout(() => {
-      router.push('/dashboard/profile')
+      router.push('/profile')
     }, 1000)
   }
 
@@ -144,7 +144,7 @@ export default function LoginPage() {
       <CardFooter className="flex justify-center">
         <p className="text-sm text-gray-600">
           계정이 없으신가요?{' '}
-          <Link href="/auth/signup" className="text-blue-600 hover:underline">
+          <Link href="/signup" className="text-blue-600 hover:underline">
             회원가입
           </Link>
         </p>

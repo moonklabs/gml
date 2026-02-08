@@ -31,7 +31,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/auth/signup" className="hover:text-blue-600 transition">
+                <Link href="/signup" className="hover:text-blue-600 transition">
                   멘토 되기
                 </Link>
               </li>

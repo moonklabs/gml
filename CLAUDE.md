@@ -109,7 +109,7 @@ All tables have RLS enabled. Key policies:
 3. **Middleware Client** (`src/lib/supabase/middleware.ts`)
    - Used in `src/middleware.ts`
    - Refreshes session on every request
-   - Protects `/dashboard/*` routes (redirects to `/auth/login` if unauthenticated)
+   - Protects `/profile` route (redirects to `/login` if unauthenticated)
 
 **IMPORTANT**: Always use the correct client type based on context:
 - Client Components → `@/lib/supabase/client`
@@ -129,27 +129,35 @@ CREATE TRIGGER on_auth_user_created
 
 ### Route Groups
 
+**IMPORTANT:** Route Groups `(folder)` are for file organization only and do NOT appear in URLs.
+
 ```
 src/app/
 ├── (public)/          # Public pages with Header + Footer
 │   ├── layout.tsx     # Shared layout for public routes
-│   ├── mentors/       # Mentor listing and detail pages
-│   └── impact/        # Impact dashboard (planned)
+│   ├── page.tsx       # Home page → URL: /
+│   ├── mentors/       # Mentor listing and detail pages → URL: /mentors
+│   └── impact/        # Impact dashboard (planned) → URL: /impact
 ├── (auth)/            # Authentication pages
 │   ├── layout.tsx     # Centered layout for auth forms
-│   ├── login/
-│   └── signup/
-├── (dashboard)/       # Protected user dashboard (planned)
-│   └── profile/       # Mentor profile management
-└── auth/callback/     # OAuth callback handler
+│   ├── login/         # Login page → URL: /login (NOT /auth/login)
+│   └── signup/        # Signup page → URL: /signup (NOT /auth/signup)
+├── (dashboard)/       # Protected user dashboard
+│   └── profile/       # Mentor profile management → URL: /profile (NOT /dashboard/profile)
+└── auth/callback/     # OAuth callback handler → URL: /auth/callback
 ```
+
+**Route Groups Naming Convention:**
+- `(auth)` → URL paths: `/login`, `/signup`
+- `(dashboard)` → URL paths: `/profile`
+- `(public)` → URL paths: `/`, `/mentors`, `/impact`
 
 ### Layout Inheritance
 
 - Root `layout.tsx`: Global styles, Inter font
 - `(public)/layout.tsx`: Header + Footer wrapper
 - `(auth)/layout.tsx`: Centered form wrapper
-- `(dashboard)/layout.tsx`: (planned) Authenticated user layout with sidebar
+- `(dashboard)/layout.tsx`: Authenticated user layout with sidebar
 
 ## Component Organization
 

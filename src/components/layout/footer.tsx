@@ -21,35 +21,37 @@ export function Footer() {
             <h4 className="font-semibold mb-4">서비스</h4>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <Link href="/mentors" className="hover:text-blue-600 transition">
-                  멘토 찾기
-                </Link>
+                <Link href="/mentors" className="hover:text-blue-600 transition">멘토 찾기</Link>
               </li>
               <li>
-                <Link href="/impact" className="hover:text-blue-600 transition">
-                  임팩트
-                </Link>
+                <Link href="/impact" className="hover:text-blue-600 transition">임팩트</Link>
               </li>
               <li>
-                <Link href="/signup" className="hover:text-blue-600 transition">
-                  멘토 되기
-                </Link>
+                <Link href="/receipts" className="hover:text-blue-600 transition">영수증</Link>
+              </li>
+              <li>
+                <Link href="/signup" className="hover:text-blue-600 transition">멘토 되기</Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">정보</h4>
+            <h4 className="font-semibold mb-4">정책</h4>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <Link href="/about" className="hover:text-blue-600 transition">
-                  소개
-                </Link>
+                <Link href="/about" className="hover:text-blue-600 transition">소개</Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-blue-600 transition">
-                  FAQ
-                </Link>
+                <Link href="/faq" className="hover:text-blue-600 transition">FAQ</Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-blue-600 transition">이용약관</Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-blue-600 transition">개인정보처리방침</Link>
+              </li>
+              <li>
+                <Link href="/disclaimer" className="hover:text-blue-600 transition">면책고지</Link>
               </li>
             </ul>
           </div>

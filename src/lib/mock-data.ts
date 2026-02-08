@@ -777,7 +777,9 @@ export function getFilteredMentors(filters?: {
   search?: string
   category?: string
 }): MentorProfile[] {
-  let filtered = mockMentors.filter((m) => m.is_active)
+  let filtered = mockMentors.filter(
+    (m) => m.is_active && (m.is_approved || m.approval_status === 'approved')
+  )
 
   if (filters?.search) {
     const search = filters.search.toLowerCase()

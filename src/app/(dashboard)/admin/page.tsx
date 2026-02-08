@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { AdminGuard } from '@/components/layout/admin-guard'
 
 const cards = [
   { href: '/admin/mentors', title: '멘토 승인 콘솔', desc: '신청 목록 확인, 승인/반려 시뮬레이션' },
@@ -10,27 +13,29 @@ const cards = [
 
 export default function AdminHomePage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">운영 콘솔</h1>
-        <p className="text-gray-600 mt-2">운영자 기준 핵심 관리 기능을 목업으로 시뮬레이션합니다.</p>
-      </div>
+    <AdminGuard>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold">운영 콘솔</h1>
+          <p className="text-gray-600 mt-2">운영자 기준 핵심 관리 기능을 목업으로 시뮬레이션합니다.</p>
+        </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        {cards.map((card) => (
-          <Link href={card.href} key={card.href}>
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle>{card.title}</CardTitle>
-                <CardDescription>{card.desc}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <span className="text-blue-600 text-sm">바로가기 →</span>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+        <div className="grid md:grid-cols-2 gap-4">
+          {cards.map((card) => (
+            <Link href={card.href} key={card.href}>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardHeader>
+                  <CardTitle>{card.title}</CardTitle>
+                  <CardDescription>{card.desc}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <span className="text-blue-600 text-sm">바로가기 →</span>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </AdminGuard>
   )
 }

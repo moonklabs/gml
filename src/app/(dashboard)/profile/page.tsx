@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -98,6 +99,108 @@ export default function ProfilePage() {
         ? prev.specialties.filter((item) => item !== slug)
         : [...prev.specialties, slug],
     }))
+  }
+
+  if (role === 'admin') {
+    return (
+      <div className="max-w-4xl mx-auto space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">프로필 관리</h1>
+          <p className="text-gray-600">운영자 역할에서는 프로필 편집 대신 운영 콘솔을 사용합니다.</p>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>운영자 모드</CardTitle>
+            <CardDescription>멘토 승인, 결제/영수증, 기부처, 리포트 관리를 진행하세요.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/admin">
+              <Button>운영 콘솔로 이동</Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (role === 'mentee') {
+    return (
+      <div className="max-w-4xl mx-auto space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">내 프로필</h1>
+          <p className="text-gray-600">멘티 관점의 세션/영수증/기부 이력을 확인하세요.</p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-4">
+          <Card>
+            <CardHeader>
+              <CardDescription>내 세션</CardDescription>
+              <CardTitle>3건</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Link href="/profile/sessions">
+                <Button size="sm" variant="outline">세션 보기</Button>
+              </Link>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardDescription>영수증</CardDescription>
+              <CardTitle>2건</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Link href="/receipts">
+                <Button size="sm" variant="outline">영수증 보기</Button>
+              </Link>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardDescription>결제 시뮬레이션</CardDescription>
+              <CardTitle>Checkout</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Link href="/checkout?mentorId=mentor-1">
+                <Button size="sm" variant="outline">결제 체험</Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>최근 기부 내역</CardTitle>
+            <CardDescription>멘티 기준 결제/기부 이력 목업</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="border-b text-left">
+                  <tr>
+                    <th className="py-2">날짜</th>
+                    <th className="py-2">멘토</th>
+                    <th className="py-2">기부금</th>
+                    <th className="py-2">수수료</th>
+                    <th className="py-2">상태</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {mockDonations.map((donation) => (
+                    <tr key={donation.id} className="border-b">
+                      <td className="py-2">{new Date(donation.donated_at).toLocaleDateString('ko-KR')}</td>
+                      <td className="py-2">{donation.mentor_profiles?.profiles.full_name || '-'}</td>
+                      <td className="py-2 font-semibold text-blue-600">${donation.amount_usd.toFixed(2)}</td>
+                      <td className="py-2">${donation.processing_fee_usd.toFixed(2)}</td>
+                      <td className="py-2"><span className="px-2 py-1 rounded-full bg-gray-100 text-xs">{donation.status}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
   }
 
   return (

@@ -112,7 +112,7 @@ export default async function MentorDetailPage({ params }: { params: Promise<{ i
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {specialties.map((item: any, index: number) => {
+                  {specialties.map((item, index) => {
                     const specialty = item.specialties
                     return (
                       <span
@@ -151,21 +151,22 @@ export default async function MentorDetailPage({ params }: { params: Promise<{ i
                   * 결제 금액 전액이 미자립/개척교회 기부금으로 전환됩니다
                 </p>
               </div>
-              {mentor.calendar_url ? (
+              <Link href={`/checkout?mentorId=${mentor.id}`} className="block">
+                <Button className="w-full" size="lg">
+                  세션 예약 + 기부하기
+                </Button>
+              </Link>
+              {mentor.calendar_url && (
                 <a
                   href={mentor.calendar_url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <Button className="w-full" size="lg">
-                    세션 예약하기
+                  <Button className="w-full" size="sm" variant="outline">
+                    캘린더 링크 확인
                   </Button>
                 </a>
-              ) : (
-                <Button className="w-full" size="lg" disabled>
-                  예약 준비 중
-                </Button>
               )}
               <p className="text-xs text-gray-500 text-center">
                 예약 후 결제 페이지로 이동합니다

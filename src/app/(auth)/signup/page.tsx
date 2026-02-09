@@ -7,10 +7,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import type { MockRole } from '@/lib/mock-data'
+import { setStoredMockRole } from '@/lib/mock-auth'
 // import { createClient } from '@/lib/supabase/client'
 
 export default function SignupPage() {
   const router = useRouter()
+  const [role, setRole] = useState<MockRole>('mentor')
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -43,7 +46,8 @@ export default function SignupPage() {
     // }
 
     setTimeout(() => {
-      router.push('/profile')
+      setStoredMockRole(role)
+      router.push(role === 'admin' ? '/admin' : '/profile')
     }, 1000)
   }
 
@@ -66,7 +70,8 @@ export default function SignupPage() {
     // }
 
     setTimeout(() => {
-      router.push('/profile')
+      setStoredMockRole(role)
+      router.push(role === 'admin' ? '/admin' : '/profile')
     }, 1000)
   }
 
@@ -119,6 +124,19 @@ export default function SignupPage() {
         </div>
 
         <form onSubmit={handleEmailSignup} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="role">가입 후 역할(목업)</Label>
+            <select
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value as MockRole)}
+              className="w-full h-10 rounded-md border px-3 text-sm"
+            >
+              <option value="mentor">멘토</option>
+              <option value="mentee">멘티</option>
+              <option value="admin">운영자</option>
+            </select>
+          </div>
           <div className="space-y-2">
             <Label htmlFor="fullName">이름</Label>
             <Input
